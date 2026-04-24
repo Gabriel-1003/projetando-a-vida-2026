@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
 
 :root{
-    --cor-de-fundo: #1E1E1E;
-    --verde: #6FFF57;
+    --cor-de-fundo: #0a190a; /* Verde escuro campo */
+    --verde-grama: #4ade80;   /* Verde grama vibrante */
     --branco: #FFFFFF;
-    --botao-ativo: #3A375E;
-    --botao-inativo: rgba(58, 55, 94, 0.5);
-    --texto-fundo: rgba(58, 55, 94, 0.3);
+    --botao-ativo: #166534;   /* Verde floresta */
+    --botao-inativo: rgba(22, 101, 52, 0.5);
+    --texto-fundo: rgba(22, 101, 52, 0.3);
+    --dourado: #fbbf24;       /* Dourado para destaque */
 }
 
 body {
     background-color: var(--cor-de-fundo);
     color: var(--branco);
     font-family: 'Chakra Petch', sans-serif;
-    background: url('bg-desktop.webp');
+    background: linear-gradient(135deg, #0a190a 0%, #166534 50%, #0a190a 100%);
+    background-attachment: fixed;
 }
-
 
 .conteudo-principal {
     display: flex;
@@ -25,34 +26,46 @@ body {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-}
-
-.titulo-principal {
-    text-align: left;
-    width: 100%;
-    font-size: 32px;
+    padding: 20px;
 }
 
 .titulo-principal {
     text-align: center;
-    color: var(--verde);
+    width: 100%;
+    font-size: 36px;
+    color: var(--verde-grama);
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+    margin-bottom: 20px;
 }
 
+.titulo-principal span::before {
+    content: "⚽ ";
+}
+.titulo-principal span::after {
+    content: " 🏆";
+}
 
 .botao {
-    font-family: 'Crakra Petch', sans-serif;
+    font-family: 'Chakra Petch', sans-serif;
     background-color: var(--botao-inativo);
     color: var(--branco);
     display: flex;
     justify-content: center;
     padding: 1em;
-    font-size: 18px;
+    font-size: 16px;
     align-items: center;
     width: 100%;
     border-bottom: 4px solid var(--botao-ativo); 
     border-left: 2px solid var(--botao-ativo); 
     border-right: 2px solid var(--botao-ativo); 
     border-top: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao:hover {
+    background-color: var(--botao-ativo);
+    transform: translateY(-2px);
 }
 
 .botao:first-child {
@@ -65,55 +78,78 @@ body {
 
 .botao.ativo{
     background-color: var(--botao-ativo);
-    border-bottom: 4px solid var(--verde);
+    border-bottom: 4px solid var(--verde-grama);
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
 }
 
 .abas-textos{
     background-color: var(--texto-fundo);
     padding: 40px;
     border-radius: 0 0 40px 40px;
+    border: 2px solid var(--verde-grama);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
 }
+
 .aba-conteudo.ativo{
     display:block;
+    animation: fadeIn 0.5s ease;
 }
 
 .aba-conteudo{
     display: none;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .aba-conteudo-titulo-principal{
     font-size: 28px;
     text-align: center;
+    color: var(--branco);
+    margin-bottom: 10px;
 }
+
 .aba-conteudo-titulo-secundario{
     text-align: center;
-    color: var(--verde);
+    color: var(--verde-grama);
     text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 25px;
 }
 
 .contador{
     display:flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 10px;
 }
+
 .contador-digito{
-    padding: 0 16px;
+    padding: 0 10px;
     text-align: center;
-    min-width: 100px
+    min-width: 90px;
+    background: rgba(22, 101, 52, 0.6);
+    border-radius: 10px;
+    padding: 15px 10px;
 }
 
 .contador-digito-numero{
-    font-size: 80px;
+    font-size: 60px;
     margin: 0;
-
+    color: var(--dourado);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
 }
 
 .contador-digito-texto{
-    color: var(--verde);
-    font-size: 20px;
+    color: var(--verde-grama);
+    font-size: 16px;
     margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
 }
-
 
 @media screen and (min-width: 768px) {
     .botoes {
@@ -127,88 +163,108 @@ body {
     .botao:last-child {
         border-radius: 0 40px 0 0;
     }    
+
+    .contador-digito-numero{
+        font-size: 80px;
+    }
 }
 
 p {
     margin-top: 0;
 }
 
-.container > div {
-    cursor: pointer;
-    display: block;
-}
-
 a {
     color: rgb(255, 255, 255);
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+a:hover {
+    transform: scale(1.1);
 }
 
 footer img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--verde-grama);
+    transition: all 0.3s ease;
+}
+
+footer img:hover {
+    box-shadow: 0 0 15px var(--verde-grama);
 }
 
 footer {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    padding: 30px 20px;
+    background: rgba(22, 101, 52, 0.4);
+    margin-top: 30px;
 }
   
 footer a {
-    margin: 20px;
+    margin: 15px 25px;
     text-align: center;
 }
 
 footer p {
-  margin-top: 2px;
-  margin-top: 2px;
-  font-size: 14px;
-  text-transform: uppercase;
-  font: bolder;
-
-  background: linear-gradient(45deg, #10c91f, #4fd12b, #19db49,#0fe33d);
-  background-size: 400% 100%;
-  animation: degrade 10s linear infinite alternate;
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  outline: none;
-}
-
-@keyframes degrade {
-  0%{
-      background-position-x: 0%;
-  }
-
-  100%{
-      background-position: 400%;
-  }
-
-p{
-  font-size: 16px;
-  color: green;
-}
-
-.texto{
-    font-size: 30px;
+    margin-top: 8px;
+    font-size: 14px;
     text-transform: uppercase;
-
-    background: linear-gradient(45deg, #638ED1, #ff0000, #009688,#44E3D3);
+    font-weight: bold;
+    background: linear-gradient(45deg, #4ade80, #22c55e, #16a34a, #15803d);
     background-size: 400% 100%;
-    animation: degrade 10s linear infinite alternate;
-
+    animation: degrade 8s linear infinite alternate;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    outline: none;
 }
 
 @keyframes degrade {
-    0%{
-        background-position-x: 0%;
-    }
+    0% { background-position-x: 0%; }
+    100% { background-position-x: 400%; }
+}
 
-    100%{
-        background-position: 400%;
+/* Efeito de bola rolando no fundo */
+body::before {
+    content: "⚽";
+    position: fixed;
+    font-size: 100px;
+    opacity: 0.05;
+    animation: ballRoll 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes ballRoll {
+    0% { transform: translateX(-100px) rotate(0deg); }
+    100% { transform: translateX(calc(100vw + 100px)) rotate(720deg); }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 480px) {
+    .titulo-principal {
+        font-size: 28px;
+    }
+    
+    .botao {
+        font-size: 14px;
+        padding: 0.8em;
+    }
+    
+    .aba-conteudo-titulo-principal {
+        font-size: 22px;
+    }
+    
+    .contador-digito-numero {
+        font-size: 40px;
+    }
+    
+    .contador-digito-texto {
+        font-size: 12px;
     }
 }
