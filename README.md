@@ -1,1 +1,1 @@
-# projetando-a-vida-2026
+# Javascript-projeto-de-vida
